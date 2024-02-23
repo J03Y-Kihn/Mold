@@ -10,10 +10,13 @@ public class Enemy : MonoBehaviour
 
     float health = 0;
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         health = maxHP;
+        anim.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class Enemy : MonoBehaviour
         //transform.position = origin_position;
 
         if(health <= 0){
+            //anim.Play("Base Layer.die", 0, 0);
             Destroy(gameObject);
         }
     }

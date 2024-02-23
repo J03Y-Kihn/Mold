@@ -33,12 +33,15 @@ public class Gazer : MonoBehaviour //Enemy
     private float currentTime;
     private float previousTime;
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         origin_position = transform.position;
         currentTime = Time.time;
         previousTime = Time.time;
+        anim.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -52,6 +55,7 @@ public class Gazer : MonoBehaviour //Enemy
         if(CanSeePlayer(sightRange)){
             AtOrigin = false;
             ChasePlayer();
+            anim.Play("Base Layer.run", 0, 0);
         }
         else{
             //if the enemy was just following the player
@@ -65,7 +69,7 @@ public class Gazer : MonoBehaviour //Enemy
                 //if(origin_position != transform.position){
                 if(transform.position.x > origin_position.x + positionBias || transform.position.x < origin_position.x - positionBias){
                     AtOrigin = false;
-                    Invoke("ReturnToOrigin", waitTime);
+                    //Invoke("ReturnToOrigin", waitTime);
                     //ReturnToOrigin();
                 }
                 /*
@@ -106,7 +110,6 @@ public class Gazer : MonoBehaviour //Enemy
         else{
             facingRight = true;
         }
-        //facingRight = !facingRight ? true : false;
     }
     
     //returning to original spot in level
@@ -134,9 +137,6 @@ public class Gazer : MonoBehaviour //Enemy
             facingRight = true;
             transform.position += new Vector3(1, 0, 0) * Time.deltaTime * movespeed;
         }
-
-
-        //transform.position += new Vector3(xMov, 0, 0) * Time.deltaTime * movespeed;
     }
 
     //check to see if enemy can see the player
