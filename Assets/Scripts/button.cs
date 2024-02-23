@@ -30,11 +30,11 @@ public class button : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision){
 
         if(collision.gameObject.CompareTag(PLAYER_TAG)){
-            if(transform.position.y < player.transform.position.y){
+            //if(transform.position.y < player.transform.position.y){
 
-                transform.position -= new Vector3(0, 1, 0) * Time.deltaTime * movespeed;
-                spawner.SpawnObject();
-            }
+            transform.position -= new Vector3(0, 1, 0) * Time.deltaTime * movespeed;
+            spawner.SpawnObject();
+            //}
         }
     }
 }
